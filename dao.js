@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 //Save Function
 //Example Use: save("USD", "HKD", 0.13);
-function save(from, to, rate) {
+function _save(from, to, rate) {
 	db = mongoose.createConnection(config.dbconnection());
 	mongoose.model('Currency', new Schema({from: String, to: String, created_at: {type:Date, default:Date.now}, rate: Number}))
 	var Currency = db.model('Currency');
@@ -17,4 +17,10 @@ function save(from, to, rate) {
 			console.log("Closed");
 		}
 	);
+}
+
+module.exports = {
+	save: function(from, to, rate) {
+		return _save(from, to, rate);	
+	},
 }
