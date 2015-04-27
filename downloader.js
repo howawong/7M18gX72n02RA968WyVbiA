@@ -1,6 +1,6 @@
 var http = require('http')
 
-function _download(host, port, path, callback_func) { 
+function _download(host, port, path, succeed_callback, fail_callback) { 
 	var options = {
   		host: host,
   		port: port,
@@ -14,15 +14,16 @@ function _download(host, port, path, callback_func) {
 			body += chunk;
   		});
   		res.on('end', function() {
-			callback_func(body);
+			succeed_callback(body);
   		});
 	}).on('error', function(e) {
   		console.log("Got error: " + e.message);
+		fail_callback(e);
 	});
 }
 
 module.exports = {
-	download: function(host, port, path, callback) {
-		return _download(host, port, path, callback);	
+	download: function(host, port, path, succeed_callback, fail_callback) {
+		return _download(host, port, path, succeed_callback, fail_callback);	
 	},
 }

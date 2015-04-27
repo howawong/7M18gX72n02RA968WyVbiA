@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 //Example Use: save("USD", "HKD", 0.13);
 function _save(from, to, rate) {
 	db = mongoose.createConnection(config.dbconnection());
-	mongoose.model('Currency', new Schema({from: String, to: String, created_at: {type:Date, default:Date.now}, rate: Number}))
+	mongoose.model('Currency', new Schema({from: String, to: String, created_at: {type:Date, default:Date.now}, rate: String}))
 	var Currency = db.model('Currency');
 	var record = new Currency({from: from, to: to, rate: rate})
 	record.save(
