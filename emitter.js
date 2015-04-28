@@ -3,8 +3,8 @@ var job = {
 	type: 'convert',
 	payload:
 	{
-		from: "JPY",
-		to : "TWD"
+		from: process.argv[2],
+		to :  process.argv[3]
 	}
 };
 

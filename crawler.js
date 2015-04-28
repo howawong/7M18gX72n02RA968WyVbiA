@@ -17,7 +17,7 @@ var fetch_rate = function(from, to, succeed_callback, fail_callback) {
 			}
 	  	}
 		});
-		if (rate != Infinity) {
+		if (rate != Infinity && rate > 0.0) {
 			succeed_callback(rate);
 		} else {
 			fail_callback(new Error("Unable to parse rate"));
