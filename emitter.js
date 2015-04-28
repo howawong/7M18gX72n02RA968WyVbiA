@@ -1,25 +1,25 @@
 var fivebeans = require('fivebeans');
 var job = { 
-	type: 'convert',
-	payload:
-	{
-		from: process.argv[2],
-		to :  process.argv[3]
-	}
+    type: 'convert',
+    payload:
+    {
+        from: process.argv[2],
+        to :  process.argv[3]
+    }
 };
 
 var client = new fivebeans.client('challenge.aftership.net', 11300);
 client
     .on('connect', function()
     {
-		client.use('howawong', function(err, tname)
-		{
-			console.log("using " + tname);
-			client.put(0, 0, 60, JSON.stringify(['howawong', job]), function(err, jobid) {console.log(jobid);
-			client.end();
-			process.exit(0);
-			;});
-		});
+        client.use('howawong', function(err, tname)
+        {
+            console.log("using " + tname);
+            client.put(0, 0, 60, JSON.stringify(['howawong', job]), function(err, jobid) {console.log(jobid);
+            client.end();
+            process.exit(0);
+            ;});
+        });
     })
     .on('error', function(err)
     {
